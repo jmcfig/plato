@@ -14,7 +14,7 @@ input_features:
         name: dst_intent
         type: set
     -
-        name: req_slot
+        name: dst_slot
         type: category
     -
         name: inf_area_value
