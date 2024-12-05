@@ -48,4 +48,37 @@ Check the data folder to see if it worked. It should have created the following 
 
 ![alt text](images/data_parsed.png)
 
+#### Creating NL models
+
+By using ludwig, we can train NLU, NLG and DST separated.
+
+
+##### NLG
+
+```ludwig experiment --model_definition_file Examples/config/ludwig_nlg_train.yaml --data_csv Data/data/DSTC2_NLG_sys.csv --output_directory Models\CamRestNLG\Sys\```
+
+This should create the NLG model in the directory present in the last argument.
+
+```ludwig experiment --model_definition_file Examples/config/ludwig_nlg_train.yaml --data_csv Data/data/DSTC2_NLG_usr.csv --output_directory Models\CamRestNLG\Usr\```
+
+^ to create nlg for the user too.
+
+##### DST
+
+```ludwig experiment --model_definition_file Examples/config/ludwig_dst_train.yaml --data_csv Data/data/DSTC2_DST_sys.csv --output_directory Models\CamRestDST\Sys\```
+
+```ludwig experiment --model_definition_file Examples/config/ludwig_dst_train.yaml --data_csv Data/data/DSTC2_DST_usr.csv --output_directory Models\CamRestDST\Usr\```
+
+#### NLU
+
+Nlu was a real problem. After wasting a lot of time without knowing what was wrong, we thought to check the paper released date and noticed it was older than the recent commits. So we reverted back to a older commit and noticed it worked. The old commit directory is also in the repo, since we tested a lot of stuff in that version.
+
+We concluded the problem was ludwig's version (they were using ludwig==0.1 back then). We tried with 0.2.1 and it worked without ruining anything some place else. Note that you must also lower the version in requirements.txt (we know this is not a good practice, but it fixed the problem and did not create new ones).
+
+So, after downgrading ludwig, the following should work:
+
+```ludwig experiment --model_definition_file Examples/config/ludwig_nlu_train.yaml --data_csv Data/data/DSTC2_NLU_sys.csv --output_directory Models\CamRestNLU\Sys\```
+
+```ludwig experiment --model_definition_file Examples/config/ludwig_nlu_train.yaml --data_csv Data/data/DSTC2_NLU_usr.csv --output_directory Models\CamRestNLU\Usr\```
+
 
