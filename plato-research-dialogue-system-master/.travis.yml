@@ -1,0 +1,30 @@
+language: python
+python:
+  - "3.7"
+before_script:
+    - "curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | sudo bash"
+jobs:
+  include:
+    - name: "Python 3.7.0 on Xenial Linux"
+      python: 3.7          # this works for Linux but is ignored on macOS or Windows
+install: pip3 install --upgrade pip || pip install --upgrade pip # all three OSes agree about 'pip3'
+script:
+  # your build scripts before running `fossa`
+  # NOTE: before running `fossa` make sure to save your FOSSA_API_KEY in your
+  # environment variable in Travis see below.
+  - fossa init
+  - fossa analyze
+  - pip3 install -r requirements.txt || pip install -r requirements.txt
+  - pip3 install tensorflow==1.15.3 || pip install tensorflow==1.15.3
+  - pip3 install SpeechRecognition || pip install SpeechRecognition
+  - pip3 install -e . || pip3 install -e .
+  - python -m unittest test.plato_tests
+  - bash make_docs.sh
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+  keep-history: true
+  on:
+    branch: master
+  local_dir: docs/_build/html/
