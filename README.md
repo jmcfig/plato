@@ -84,5 +84,20 @@ So, after downgrading ludwig, the following should work:
 
 You can now run these configs individually to check if every language model is working properly:
 
-
 ![alt text](images/configs_individual.png)
+
+### Multi Agent system
+
+We can know finally train our agents! A multi-agent system configuration could already be found in example/config/application
+
+We adapted it to use the trained NLP models and it can be found on the config directory.
+
+To train the models, simply run:
+
+```plato run --config config/MA_replicate_train.yaml```
+
+And to test them, run:
+
+```plato run --config config/MA_replicate_test.yaml```
+
+Note: From what we could find in the old commit and by reading the paper, we noticed that no DST was used by the people who wrote the paper. This made sense, since only the recent plato version supports it. Therefore, following this steps may lead to better results than the original paper.
