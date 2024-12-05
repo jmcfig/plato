@@ -73,18 +73,12 @@ To solve this, we created a new configuration file called `ludwig_dst_train_usr.
 
 - **For the system dataset (`sys`)**:
   ```bash
-  ludwig experiment \
-      --model_definition_file Examples/config/ludwig_dst_train.yaml \
-      --data_csv Data/data/DSTC2_DST_sys.csv \
-      --output_directory Models/CamRestDST/Sys/
+  ludwig experiment --model_definition_file Examples/config/ludwig_dst_train.yaml --data_csv Data/data/DSTC2_DST_sys.csv --output_directory Models\CamRestDST\Sys\
     ```
 
 - **For the user dataset (`usr`)**:
     ```bash
-    ludwig experiment \
-        --model_definition_file Examples/config/ludwig_dst_train_usr.yaml \
-        --data_csv Data/data/DSTC2_DST_usr.csv \
-        --output_directory Models/CamRestDST/Usr/
+    ludwig experiment --model_definition_file Examples/config/ludwig_dst_train_usr.yaml --data_csv Data/data/DSTC2_DST_usr.csv --output_directory Models\CamRestDST\Usr\
     ```
 
 This ensures that both the system and user perspectives are accurately trained while accounting for their structural differences.
