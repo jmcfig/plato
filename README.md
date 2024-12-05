@@ -22,11 +22,11 @@ Tensorflow may also cause problems. So we recommend to try version 1.15, which s
 
 
 
-### Running tutorial
+## Replication
 
 The main tutorial was not great, so let's dive deeper into each step we should take to train the multi agent system.
 
-#### Parsing the data
+### Parsing the data
 
 Go to https://github.com/matthen/dstc and download dstc2_traindev.tar.gz.
 
@@ -48,12 +48,12 @@ Check the data folder to see if it worked. It should have created the following 
 
 ![alt text](images/data_parsed.png)
 
-#### Creating NL models
+### Creating NL models
 
 By using ludwig, we can train NLU, NLG and DST separated.
 
 
-##### NLG
+#### NLG
 
 ```ludwig experiment --model_definition_file Examples/config/ludwig_nlg_train.yaml --data_csv Data/data/DSTC2_NLG_sys.csv --output_directory Models\CamRestNLG\Sys\```
 
@@ -63,7 +63,7 @@ This should create the NLG model in the directory present in the last argument.
 
 ^ to create nlg for the user too.
 
-##### DST
+#### DST
 
 ```ludwig experiment --model_definition_file Examples/config/ludwig_dst_train.yaml --data_csv Data/data/DSTC2_DST_sys.csv --output_directory Models\CamRestDST\Sys\```
 
@@ -82,3 +82,7 @@ So, after downgrading ludwig, the following should work:
 ```ludwig experiment --model_definition_file Examples/config/ludwig_nlu_train.yaml --data_csv Data/data/DSTC2_NLU_usr.csv --output_directory Models\CamRestNLU\Usr\```
 
 
+You can now run these configs individually to check if every language model is working properly:
+
+
+![alt text](images/configs_individual.png)
