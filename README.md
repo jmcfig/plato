@@ -65,9 +65,29 @@ This should create the NLG model in the directory present in the last argument.
 
 #### DST
 
-```ludwig experiment --model_definition_file Examples/config/ludwig_dst_train.yaml --data_csv Data/data/DSTC2_DST_sys.csv --output_directory Models\CamRestDST\Sys\```
+When working with `DSTC2_DST_sys.csv` and `DSTC2_DST_usr.csv` for **Dialog State Tracking (DST)**, we encountered a structural difference between the two datasets, as they have **different features (column names)**. This required creating and using separate Ludwig configuration files (`.yaml`) to train the models effectively.
 
-```ludwig experiment --model_definition_file Examples/config/ludwig_dst_train.yaml --data_csv Data/data/DSTC2_DST_usr.csv --output_directory Models\CamRestDST\Usr\```
+Initially, the provided configuration file `ludwig_dst_train.yaml` (changed to `ludwig_dst_train_sys.yaml`) was suitable for the **system dataset (`sys`)**, as it matched its specific features. However, when training the model with the **user dataset (`usr`)**, the configuration file needed modifications to reflect the different column structure. 
+
+To solve this, we created a new configuration file called `ludwig_dst_train_usr.yaml`, which was tailored for the **user dataset**. This allowed successful training for both perspectives with the following commands:
+
+- **For the system dataset (`sys`)**:
+  ```bash
+  ludwig experiment \
+      --model_definition_file Examples/config/ludwig_dst_train.yaml \
+      --data_csv Data/data/DSTC2_DST_sys.csv \
+      --output_directory Models/CamRestDST/Sys/
+    ```
+
+- **For the user dataset (`usr`)**:
+    ```bash
+    ludwig experiment \
+        --model_definition_file Examples/config/ludwig_dst_train_usr.yaml \
+        --data_csv Data/data/DSTC2_DST_usr.csv \
+        --output_directory Models/CamRestDST/Usr/
+        ```
+
+This ensures that both the system and user perspectives are accurately trained while accounting for their structural differences.
 
 #### NLU
 
