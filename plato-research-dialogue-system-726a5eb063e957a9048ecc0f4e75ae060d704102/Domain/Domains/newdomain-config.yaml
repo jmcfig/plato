@@ -1,0 +1,14 @@
+---
+
+GENERAL:
+  csv_file_name: Data/data/lisbon.csv
+  db_table_name: lisbon
+  db_file_path: Domain/domains/lisbon-dbase.db
+  ontology_file_path: Domain/domains/lisbon-rules.json
+
+ONTOLOGY:
+  informable_slots: [price, type, town, name]
+
+  requestable_slots: [price, town, type, name, rating, coordinates]
+
+  system_requestable_slots: [price, type, town]

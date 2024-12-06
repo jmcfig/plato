@@ -2,3 +2,6 @@
 *
 # Except this file
 !.gitignore
+
+!.lisbon.csv
+!.airbnb_lisbon.ipynb
