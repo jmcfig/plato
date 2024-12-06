@@ -20,6 +20,7 @@ For example: ```ludwig>=0.2.2``` -> ```pip install ludwig==0.2.2```
 
 Tensorflow may also cause problems. So we recommend to try version 1.15, which should work fine.
 
+> **Note:** Ludwig version 0.2.2 caused problems with the NLU training. We had to downgrade to 0.2.1 to make it work. 
 
 
 ## Replication
