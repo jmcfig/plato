@@ -1,3 +1,5 @@
+---
+
 input_features:
     -
         name: dst_prev_food
@@ -10,12 +12,18 @@ input_features:
         type: category
     -
         name: dst_intent
-        type: category
+        type: set
     -
         name: dst_slot
         type: category
     -
-        name: dst_value
+        name: inf_area_value
+        type: category
+    -
+        name: inf_food_value
+        type: category
+    -
+        name: inf_pricerange_value
         type: category
 
 output_features:
