@@ -96,10 +96,10 @@ class DummyNLG(NLG):
                                     len(dact.params) > 1:
                                 response += dact_item.value + '  '
 
-                            elif dact_item.slot in ['food', 'cuisine']:
-                                response += 'is serving ' + \
+                            elif dact_item.slot in ['type']:
+                                response += 'is ' + \
                                             dact_item.value + \
-                                            ' food, '
+                                            ' type, '
 
                             elif dact_item.slot == 'endorsement':
                                 response += 'is ' + dact_item.value + ', '
@@ -218,9 +218,9 @@ class DummyNLG(NLG):
 
             response += ' '
 
-        response = response.replace('addr', 'address')
-        response = response.replace('pricerange', 'price range')
-        response = response.replace('postcode', 'post code')
+        response = response.replace('addr', 'coordinates')
+        response = response.replace('pricerange', 'price')
+        response = response.replace('postcode', 'coordinates')
         response = response.replace('dontcare', 'any')
 
         return response

@@ -99,7 +99,7 @@ class DummyNLU(NLU):
                 result = dict(zip(slot_names, item))
 
                 for slot in result:
-                    if slot in ['id', 'signature', 'description']:
+                    if slot in ['id', 'signature', 'description', 'host_name']:
                         continue
 
                     if slot not in self.slot_values:
@@ -205,18 +205,17 @@ class DummyNLU(NLU):
         utterance = utterance.translate(self.punctuation_remover)
 
         # Replace synonyms
-        utterance = utterance.replace('location', 'area')
-        utterance = utterance.replace('part of town', 'area')
+        utterance = utterance.replace('location', 'town')
+        utterance = utterance.replace('part of town', 'town')
         utterance = utterance.replace('center', 'centre')
         utterance = utterance.replace('cheaply', 'cheap')
         utterance = utterance.replace('moderately', 'moderate')
         utterance = utterance.replace('expensively', 'expensive')
-        utterance = utterance.replace('address', 'addr')
-        utterance = utterance.replace('telephone', 'phone')
-        utterance = utterance.replace('postal code', 'postcode')
-        utterance = utterance.replace('post code', 'postcode')
-        utterance = utterance.replace('zip code', 'postcode')
-        utterance = utterance.replace('price range', 'pricerange')
+        utterance = utterance.replace('address', 'coordinates')
+        utterance = utterance.replace('telephone', 'rating')
+        utterance = utterance.replace('post code', 'coordinates')
+        utterance = utterance.replace('zip code', 'coordinates')
+        utterance = utterance.replace('price range', 'price')
 
         # First check if the user doesn't care
         if last_sys_act and last_sys_act.intent in ['request', 'expl-conf']:
@@ -417,7 +416,7 @@ class DummyNLU(NLU):
                             break
 
                     if not found:
-                        # Search for dontcare (e.g. I want any area)
+                        # Search for dontcare (e.g. I want any town)
                         for p in self.dontcare_pattern:
                             match = re.search(r'\b{0}\b'.format(p), utterance)
                             if match:
