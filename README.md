@@ -120,4 +120,4 @@ And to test them, run:
 
 ```plato run --config config/MA_replicate_test.yaml```
 
-Note: From what we could find in the old commit and by reading the paper, we noticed that no DST was used by the people who wrote the paper. This made sense, since only the recent plato version supports it. Therefore, following this steps may lead to better results than the original paper.
+Note: From what we could find in the old commit and by reading the paper, we noticed that no trained DST was used by the people who wrote the paper. This made sense, since only the recent plato version supports it. We then confirmed that by trying to use a trained dst, nlu & nlg all together, which lead to some issues. We decided to proceed with the dummy DST, like they did. Our guess is that the DST parsing and/or training is not properly working in the most recent version, and we did not manage to fix it in time, despite numerous tries.
