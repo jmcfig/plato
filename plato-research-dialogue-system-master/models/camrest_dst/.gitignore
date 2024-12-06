@@ -2,3 +2,7 @@
 *
 # Except this file
 !.gitignore
+
+# Except directories used in the tutorials
+!sys
+!usr
