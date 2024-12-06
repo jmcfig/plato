@@ -33,8 +33,12 @@ AGENT_0:
     class: DialogueManagerGeneric
     arguments:
       DST:
-        package: plato.agent.component.dialogue_state_tracker.slot_filling_dst
-        class: SlotFillingDST
+        package: applications.cambridge_restaurants.camrest_dst
+        class: CamRestDST
+        arguments:
+          model_path: models/camrest_dst/sys/experiment_run/model
+#        package: plato.agent.component.dialogue_state_tracker.slot_filling_dst
+#        class: SlotFillingDST
 
       policy:
         package: plato.agent.component.dialogue_policy.reinforcement_learning.wolf_phc_policy
@@ -50,24 +54,38 @@ AGENT_0:
           policy_path: models/policies/sys/wolf_phc_policy_sys.pkl
 
   NLU:
-    package: plato.agent.component.nlu.slot_filling_nlu
-    class: SlotFillingNLU
+#    Trained
+    package: applications.cambridge_restaurants.camrest_nlu
+    class: CamRestNLU
+    arguments:
+      model_path: models/camrest_nlu/sys/experiment_run/model
+
+#    Default
+#    package: plato.agent.component.nlu.slot_filling_nlu
+#    class: SlotFillingNLU
 
 #    If you have Ludwig-trained nlu, you can do the following:
 #    nlu: CamRest
-#    model_path: models/camrest_nlu/sys/model
+#    model_path: models/camrest_nlu/sys/experiment_run/model
 
 
 #    Remember, you can skip nlg and nlu and let the agents interact via
 #    dialogue Acts
 
   NLG:
-    package: plato.agent.component.nlg.slot_filling_nlg
-    class: SlotFillingNLG
+#    Trained
+    package: applications.cambridge_restaurants.camrest_nlg
+    class: CamRestNLG
+    arguments:
+      model_path: models/camrest_nlg/sys/experiment_run/model
+
+#    Default
+#    package: plato.agent.component.nlg.slot_filling_nlg
+#    class: SlotFillingNLG
 
 #    If you have Ludwig-trained nlg, you can do the following:
 #    nlg: CamRest
-#    model_path: models/CamRest_nlg/sys/model
+#    model_path: models/camrest_nlg/sys/experiment_run/model
 
 
 #    Remember, you can skip nlg and nlu and let the agents interact via
@@ -82,8 +100,12 @@ AGENT_1:
     class: DialogueManagerGeneric
     arguments:
       DST:
-        package: plato.agent.component.dialogue_state_tracker.slot_filling_dst
-        class: SlotFillingDST
+        package: applications.cambridge_restaurants.camrest_dst
+        class: CamRestDST
+        arguments:
+          model_path: models/camrest_dst/usr/experiment_run/model
+#        package: plato.agent.component.dialogue_state_tracker.slot_filling_dst
+#        class: SlotFillingDST
 
       policy:
         package: plato.agent.component.dialogue_policy.reinforcement_learning.wolf_phc_policy
@@ -95,27 +117,42 @@ AGENT_1:
           discount_factor: 0.8
           learning_decay_rate: 0.995
           exploration_decay_rate: 0.995
+          goal: data/goals.pkl
 
           policy_path: models/policies/user_0/wolf_phc_policy_usr.pkl
 
   NLU:
-    package: plato.agent.component.nlu.slot_filling_nlu
-    class: SlotFillingNLU
+#    Trained
+    package: applications.cambridge_restaurants.camrest_nlu
+    class: CamRestNLU
+    arguments:
+      model_path: models/camrest_nlu/usr/experiment_run/model
+
+#    Default
+#    package: plato.agent.component.nlu.slot_filling_nlu
+#    class: SlotFillingNLU
 
 #    If you have Ludwig-trained nlu, you can do the following:
 #    nlu: CamRest
-#    model_path: models/camrest_nlu/usr/model
+#    model_path: models/camrest_nlu/usr/experiment_run/model
 
 #    Remember, you can skip nlg and nlu and let the agents interact via
 #    dialogue Acts
 
   NLG:
-    package: plato.agent.component.nlg.slot_filling_nlg
-    class: SlotFillingNLG
+#    Trained
+    package: applications.cambridge_restaurants.camrest_nlg
+    class: CamRestNLG
+    arguments:
+      model_path: models/camrest_nlg/usr/experiment_run/model
+
+#    Default
+#    package: plato.agent.component.nlg.slot_filling_nlg
+#    class: SlotFillingNLG
 
 #    If you have Ludwig-trained nlg, you can do the following:
 #    nlg: CamRest
-#    model_path: models/camrest_nlg/usr/model
+#    model_path: models/camrest_nlg/usr/experiment_run/model
 
 
 #    Remember, you can skip nlg and nlu and let the agents interact via
