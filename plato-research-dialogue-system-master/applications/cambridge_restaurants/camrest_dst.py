@@ -215,3 +215,14 @@ class CamRestDST(LudwigDST):
         """
 
         super(CamRestDST, self).load(model_path)
+
+    def update_goal(self, goal):
+        """
+        Update the goal of the DST.
+
+        :param goal: the new goal
+        :return:
+        """
+
+        self.DState.goal = goal
+        self.DState.initialize()
