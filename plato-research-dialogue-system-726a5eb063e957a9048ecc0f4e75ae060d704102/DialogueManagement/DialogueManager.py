@@ -433,6 +433,10 @@ class DialogueManager(ConversationalModule):
                 sys_acts_copy.remove(sys_act)
 
                 if d_state.item_in_focus:
+                    
+                    
+                    
+                    
                     new_sys_acts.append(
                         DialogueAct(
                             'offer',

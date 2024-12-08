@@ -390,8 +390,8 @@ def run_controller(args):
                     interaction_mode))
                 return -1
 
-        except (ValueError, FileNotFoundError, TypeError, AttributeError) \
-                as err:
+        except () as err:  ##ValueError, FileNotFoundError, TypeError, AttributeError) \
+            # as err:
             print('\nPlato error! {0}\n'.format(err))
             return -1
 

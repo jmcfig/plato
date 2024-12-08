@@ -66,6 +66,7 @@ class ConversationalGenericAgent(ConversationalAgent):
         self.cumulative_rewards = 0
         self.total_dialogue_turns = 0
 
+        print("CONV GENERIC")
         self.minibatch_length = 250
         self.TRAIN_INTERVAL = 50
         self.train_epochs = 10
