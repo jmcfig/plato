@@ -88,6 +88,8 @@ class ConversationalMultiAgent(ConversationalAgent):
         self.minibatch_length = 200
         self.train_interval = 50
         self.train_epochs = 3
+        
+        print("CONV MULT")
 
         # Alternate training between the agents
         self.train_alternate_training = True

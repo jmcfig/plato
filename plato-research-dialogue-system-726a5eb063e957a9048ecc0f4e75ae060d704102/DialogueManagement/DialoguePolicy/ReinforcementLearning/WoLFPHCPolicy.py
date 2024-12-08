@@ -310,6 +310,9 @@ class WoLFPHCPolicy(DialoguePolicy.DialoguePolicy):
             if state.user_goal:
                 for c in self.informable_slots:
                     if c != 'name':
+                        
+                        
+                        
                         if c in state.user_goal.constraints and \
                                 state.user_goal.constraints[c].value:
                             temp.append(1)
@@ -321,6 +324,8 @@ class WoLFPHCPolicy(DialoguePolicy.DialoguePolicy):
                             temp.append(1)
                         else:
                             temp.append(0)
+                    
+                        
 
                 for r in self.requestable_slots:
                     if r in state.user_goal.requests:
@@ -345,6 +350,7 @@ class WoLFPHCPolicy(DialoguePolicy.DialoguePolicy):
                 temp.append(1) if value else temp.append(0)
 
             for r in self.requestable_slots:
+                
                 temp.append(1) if r == state.requested_slot else temp.append(0)
 
         # Encode state
@@ -373,9 +379,12 @@ class WoLFPHCPolicy(DialoguePolicy.DialoguePolicy):
             return -1
 
         action = actions[0]
+        
 
         if system:
             if self.dstc2_acts_sys and action.intent in self.dstc2_acts_sys:
+                
+    
                 return self.dstc2_acts_sys.index(action.intent)
 
             if action.intent == 'request':
@@ -384,6 +393,11 @@ class WoLFPHCPolicy(DialoguePolicy.DialoguePolicy):
                            action.params[0].slot)
     
             if action.intent == 'inform':
+                
+                if action.params[0].slot == 'name':
+                    return self.dstc2_acts_sys.index('offer')
+                               
+            
                 return len(self.dstc2_acts_sys) + \
                        len(self.system_requestable_slots) + \
                        self.requestable_slots.index(action.params[0].slot)
@@ -396,6 +410,11 @@ class WoLFPHCPolicy(DialoguePolicy.DialoguePolicy):
                        self.requestable_slots.index(action.params[0].slot)
 
             if action.intent == 'inform':
+                
+                if action.params[0].slot == 'name':
+                    return self.dstc2_acts_sys.index('offer')
+                
+                
                 return len(self.dstc2_acts_usr) + \
                        len(self.requestable_slots) + \
                        self.system_requestable_slots.index(
