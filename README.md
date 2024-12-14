@@ -66,7 +66,7 @@ This should create the NLG model in the directory present in the last argument.
 
 #### DST
 
-When working with `DSTC2_DST_sys.csv` and `DSTC2_DST_usr.csv` for **Dialog State Tracking (DST)**, we encountered a structural difference between the two datasets, as they have **different features (column names)**. This required creating and using separate Ludwig configuration files (`.yaml`) to train the models effectively.
+When working with `DSTC2_DST_sys.csv` and `DSTC2_DST_usr.csv` for **Dialog State Tracking (DST)**, we encountered a slight structural difference between the two datasets, as they have **different features (column names)**. This required creating and using separate Ludwig configuration files (`.yaml`) to train the models effectively.
 
 Initially, the provided configuration file `ludwig_dst_train.yaml` (changed to `ludwig_dst_train_sys.yaml`) was suitable for the **system dataset (`sys`)**, as it matched its specific features. However, when training the model with the **user dataset (`usr`)**, the configuration file needed modifications to reflect the different column structure. 
 
@@ -106,6 +106,68 @@ You can now run these configs individually to check if every language model is w
 
 We can know finally train our agents! A multi-agent system configuration could already be found in example/config/application
 
-We tried adapting it to use the trained NLP models, however, this created many issues that we were not able to solve (despite several hours debugging). We believe it
+We tried adapting it to use the trained NLP models, however, this created many issues that we were not able to solve (despite several hours debugging). We believe it is a problem related to plato.
+
+Instead of training the multi agent system with the NLP models, we used the default NLU and NLG - which do not need previous training of existing dialogues. This is actually more interisting to create agents acting on a new domain because it can be based on any database, and NLU and NLG require previously recorded dialogues to train each component.
+
+We noticed that despite using the default version, our results were similar to the ones on the paper (which may indicate they also used the default NLP).
+
+After training - by generating 20k dialogues - the multi agent system (with WolfPHC agents) from scratch, we then tested the agents on a new batch of 1000 dialogues (same as the paper). The results were the following: 
+
+![alt text](MA_test_results.png)
+
+As can be seen above, the results were replicated.
+
+
+
+
+## New domain
+
+Now that we replicated the results, let's train agents on a new domain.
+
+The first step was to choose the domain: we ended up with a dataset with Lisbon Airbnb data.
+
+We then simplified it with simple pandas operations, as can be seen in directory notebooks.
+
+### Create Ontology
+
+Next, we created the ontology and a .db file with the csv data. To do so, we simply ran this:
+
+plato domain --config "path/newdomain.yaml"
+
+```yaml
+GENERAL:
+  csv_file_name: data/lisbon.csv
+  db_table_name: lisbon
+  db_file_path: domains/lisbon-dbase.db
+  ontology_file_path: domains/lisbon-rules.json
+
+
+ONTOLOGY:
+  informable_slots: [price, type, town, name]
+
+  requestable_slots: [price, town, type, name, rating, coordinates]
+
+  system_requestable_slots: [price, type, town]
+```
+
+In the file, we simply need to indicate the csv path, and the directory in which to save the database and ontology file.
+
+The ontology file consists of a json with rules related to each dataset variable.
+
+The informable slots are features which the system informs the user, and may be set as a constraint (an example of a constraint would be the user wanting a cheap airbnb).
+
+The requestable slots are slots that the user may want to ask the system (i.e. "What is the rating?").
+
+System requestable slots are features the system may ask the user for their preference (i.e. "Which type would you like?").
+
+### Training the agents
+
+To then train the agents, we tried to run a similar config as the one used to replicate the original results. However, we noticed that even the default NLPs and policies were kinda hard-coded and only worked with the Cambridge domain. After debugging (a lot) we managed to adapt it to work with any domain and, after running the same process mentioned before, we got the following results:
+
+![alt text](Lisbon_MA_test_results.png)
+
+We were a bit surprised by the results, which we were a lot better for the new domain. Since we used the same process for both domains, this improvement in results happened due to the fact that the new dataset is simpler.
+
 
 
