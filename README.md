@@ -100,18 +100,11 @@ You can now run these configs individually to check if every language model is w
 
 ![alt text](images/configs_individual.png)
 
+
 ### Multi Agent system
 
 We can know finally train our agents! A multi-agent system configuration could already be found in example/config/application
 
-We adapted it to use the trained NLP models and it can be found on the config directory.
+We tried adapting it to use the trained NLP models, however, this created many issues that we were not able to solve (despite several hours debugging). We believe it
 
-To train the models, simply run:
 
-```plato run --config config/MA_replicate_train.yaml```
-
-And to test them, run:
-
-```plato run --config config/MA_replicate_test.yaml```
-
-Note: From what we could find in the old commit and by reading the paper, we noticed that no trained DST was used by the people who wrote the paper. This made sense, since only the recent plato version supports it. We then confirmed that by trying to use a trained dst, nlu & nlg all together, which lead to some issues. We decided to proceed with the dummy DST, like they did. Our guess is that the DST parsing and/or training is not properly working in the most recent version, and we did not manage to fix it in time, despite numerous tries.
