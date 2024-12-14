@@ -165,7 +165,7 @@ System requestable slots are features the system may ask the user for their pref
 
 To then train the agents, we tried to run a similar config as the one used to replicate the original results. However, we noticed that even the default NLPs and policies were kinda hard-coded and only worked with the Cambridge domain. After debugging (a lot) we managed to adapt it to work with any domain and, after running the same process mentioned before, we got the following results:
 
-![alt text](images/prt_cs/Lisbon_MA_test_results.png)
+![alt text](images/prt_sc/Lisbon_MA_test_results.png)
 
 We were a bit surprised by the results, which we were a lot better for the new domain. Since we used the same process for both domains, this improvement in results happened due to the fact that the new dataset is simpler.
 
