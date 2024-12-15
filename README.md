@@ -1,6 +1,11 @@
 # TSI - Multi agent research dialogue system
 
-To use the same methods as the researchers who posted the paper ------ , ------, ------. We used plato, developed by UberAI (which they work for).
+To use the same methods as the researchers who posted the paper (Alexandros Papangelis, Yi-Chia Wang, Piero Molino, Gokhan Tur): we used plato, developed by UberAI.
+
+Research paper: https://aclanthology.org/W19-5912.pdf
+Repo: https://github.com/uber-archive/plato-research-dialogue-system
+Original researchers' emails: {apapangelis, yichia.wang, piero, gokhan}@uber.com
+
 
 ## Installation w/ additional notes
 
