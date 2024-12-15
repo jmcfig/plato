@@ -31,7 +31,7 @@ The main tutorial was not great, so let's dive deeper into each step we should t
 
 Go to https://github.com/matthen/dstc and download dstc2_traindev.tar.gz.
 
-Then run the following command:
+Then change the following file:
 
 Go to `example/config/parser/Parse_DSTC2.yaml` and change the data_path to where you extracted the data mentioned above.
 
@@ -167,7 +167,7 @@ To then train the agents, we tried to run a similar config as the one used to re
 
 ![alt text](images/prt_sc/Lisbon_MA_test_results.png)
 
-We were a bit surprised by the results, which we were a lot better for the new domain. Since we used the same process for both domains, this improvement in results happened due to the fact that the new dataset is simpler.
+We were a bit surprised by the results, which were a lot better for the new domain. Since we used the same process for both domains, this improvement in results happened due to the fact that the new dataset is simpler.
 
 
 
