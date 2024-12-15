@@ -7,17 +7,17 @@ GENERAL:
   experience_logs:
     save: False
     load: False
-    path: Logs/CamRest_MultiAgent_Train
+    path: Logs/Lisbon_MultiAgent_Train
 
   global_arguments:
     ontology: Domain/Domains/lisbon-rules.json
     database: Domain/Domains/lisbon-dbase.db
-    domain: CamRest
+    domain: Lisbon
     db_type: sql
 
 DIALOGUE:
   num_dialogues: 20000
-  domain: CamRest
+  domain: Lisbon
   ontology_path: Domain/Domains/lisbon-rules.json
   db_path: Domain/Domains/lisbon-dbase.db
   db_type: sql
