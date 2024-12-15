@@ -16,7 +16,7 @@ GENERAL:
     db_type: sql
 
 DIALOGUE:
-  num_dialogues: 10000
+  num_dialogues: 20000
   domain: CamRest
   ontology_path: Domain/Domains/CamRestaurants-rules.json
   db_path: Domain/Domains/CamRestaurants-dbase.db
