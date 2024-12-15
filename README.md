@@ -45,7 +45,7 @@ If it doesn't work try with the full path to the yaml file:
 ```plato parse -config example/config/parser/Parse_DSTC2.yaml.```
 
 
-Check the data folder to see if it worked. It should have created the following files:
+Check the data folder to see if it worked. It should have created the following CSV files (the rest is created later):
 
 ![alt text](images/data_parsed.png)
 
